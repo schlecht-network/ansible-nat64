@@ -1,0 +1,53 @@
+---
+- name: Install linux-headers
+  package:
+    name: "linux-headers-{{ ansible_kernel }}"
+
+- name: Install firewalld
+  package:
+    name: firewalld
+    state: latest
+
+- name: Install Jool dkms
+  package:
+    name: jool-dkms
+    state: latest
+
+- name: Install jool tools
+  package:
+    name: jool-tools
+    state: latest
+
+- name: Start+Enable firewalld
+  systemd:
+    name: firewalld
+    state: started
+    enabled: yes
+
+- name: configure ipv4 forwarding
+  sysctl:
+    name: net.ipv4.conf.all.forwarding
+    value: 1
+    sysctl_set: yes
+
+- name: configure ipv6 forwarding
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: 1
+    sysctl_set: yes
+
+- name: create /etc/jool directory
+  file:
+    path: /etc/jool
+    state: directory
+
+- name: create jool config file
+  template:
+    src: jool.conf.j2
+    dest: /etc/jool/jool.conf
+
+- name: Start+Enable jool
+  systemd:
+    name: jool
+    state: started
+    enabled: yes
