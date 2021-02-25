@@ -1,21 +1,25 @@
 ---
 - name: Install linux-headers
-  package:
+  apt:
     name: "linux-headers-{{ ansible_kernel }}"
+    update_cache: yes
 
 - name: Install firewalld
-  package:
+  apt:
     name: firewalld
+    update_cache: yes
     state: latest
 
 - name: Install Jool dkms
-  package:
+  apt:
     name: jool-dkms
+    update_cache: yes
     state: latest
 
 - name: Install jool tools
-  package:
+  apt:
     name: jool-tools
+    update_cache: yes
     state: latest
 
 - name: Start+Enable firewalld
