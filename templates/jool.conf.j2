@@ -1,3 +1,7 @@
+############################################################################
+######### Managed by ansible (role: ansible-nat64 ), do not edit! ##########
+############################################################################
+
 {
         "comment": "Configuration for the systemd NAT64 Jool service.",
 
@@ -6,6 +10,6 @@
 
         "global": {
                 "pool6": "{{ pool6 }}",
-                "lowest-ipv6-mtu": "{{ lowestipv6mtu }}"
+                "lowest-ipv6-mtu": {{ lowestipv6mtu }}
         }
 }
