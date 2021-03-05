@@ -1,2 +1,2 @@
 pool6: "64:ff9b::/96"
-lowest-ipv6-mtu: "1440"
+lowestipv6mtu: "1440"
